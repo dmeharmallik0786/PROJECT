@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>NSVM</title>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Character Creator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        
+        header {
+            background-color: #6200ea;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: hsla(228, 80%, 59%, 0.9);
+            padding: 0.5rem;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+        }
+        
+        nav a:hover {
+            background-color: #3700b3;
+        }
+        
+        .container {
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .heading-container {
+            display: inline-block;
+            margin: 1rem;
+            cursor: pointer;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .heading-container:hover {
+            transform: scale(1.05);
+        }
+        
+        .heading-container img {
+            width: 200px;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 0.5rem;
+        }
+        
+        .heading {
+            font-size: 1.2rem;
+            color: white;
+            /* Ensures the text color stands out against the background */
+            text-decoration: underline;
+            background-color: #6200ea;
+            /* Background color for the heading text */
+            padding: 0.2rem 0.5rem;
+            /* Adds padding around the text for better visibility */
+            border-radius: 5px;
+            /* Optional: Adds rounded corners */
+        }
+        
+        .heading:hover {
+            background-color: #3700b3;
+            /* Change background color on hover */
+            color: white;
+            /* Ensures the text remains readable */
+        }
+        
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            max-width: 400px;
+            background: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 2rem;
+            border-radius: 10px;
+            z-index: 1000;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            max-height: 80vh;
+            /* Set max-height for the popup */
+            overflow: auto;
+            /* Add scroll option */
+        }
+        
+        .popup.show {
+            display: block;
+            opacity: 1;
+            transform: translate(-50%, -45%);
+        }
+        
+        .popup h3 {
+            margin: 0;
+            color: #6200ea;
+        }
+        
+        .popup p {
+            margin: 1rem 0;
+            font-weight: bold;
+            /* Bold the description text */
+        }
+        
+        .popup img {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+        
+        .popup button {
+            background-color: #6200ea;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .popup button:hover {
+            background-color: #3700b3;
+        }
+        
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+        
+        .overlay.show {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>CHARACTER CREATOR</h1>
+        <p>Your ultimate AI-powered tool for character creation</p>
+    </header>
+    <nav>
+        <a href="#profile">Design Profile</a>
+        <a href="#dialogue">Generate Dialogue</a>
+        <a href="#interaction">Write Interactions</a>
+        <a href="#portfolio">Create Portfolio</a>
+    </nav>
+    <div class="container">
+        <!-- Display Headings with Images -->
+        <div class="heading-container" data-title="Design Character Profile" data-description="Artbreeder: 
+
+Allows you to create realistic or fantasy characters through a combination of pre-existing traits. This is perfect for visualizing your character’s appearance based on certain parameters.
+
+." data-link="https://www.artbreeder.com/" data-image="p1.png">
+            <img src="p1.png" alt="Design Character Profile">
+            <h2 class="heading">Design Character Profile</h2>
+        </div>
+        <div class="heading-container" data-title="Generate Character Dialogue" data-description="
+ChatGPT :
+ Can be used to generate character dialogue, interactions, and scene writing. You can use it to write engaging conversations and script interactions between characters.
+" data-link="https://chat.openai.com/" data-image="p2.png">
+            <img src="p2.png" alt="Generate Character Dialogue">
+            <h2 class="heading">Generate Character Dialogue</h2>
+        </div>
+        <div class="heading-container" data-title="Write Character Interactions" data-description="AI Dungeon:
+AI Dungeon can generate dialogues between characters in real time based on your inputs. You can simulate conversations, conflict, or cooperation between characters to explore different ways they might interact.
+
+" data-link="https://play.aidungeon.io/" data-image="p3.png">
+            <img src="p3.png" alt="Write Character Interactions">
+            <h2 class="heading">Write Character Interactions</h2>
+        </div>
+        <div class="heading-container" data-title="Create Character Portfolio" data-description="Artbreeder: 
+
+Allows you to create realistic or fantasy characters through a combination of pre-existing traits. This is perfect for visualizing your character’s appearance based on certain parameters.
+
+" data-link="https://www.artbreeder.com/" data-image="p4.png">
+            <img src="p4.png" alt="Create Character Portfolio">
+            <h2 class="heading">Create Character Portfolio</h2>
+        </div>
+    </div>
+
+    <!-- Popup and Overlay -->
+    <div class="overlay"></div>
+    <div class="popup">
+        <h3 id="popup-title"></h3>
+        <img id="popup-image" src="" alt="Popup Image">
+        <p id="popup-description"></p>
+        <a id="popup-link" href="#" target="_blank">
+            <button>Launch Tool</button>
+        </a>
+        <button id="close-popup">Close</button>
+    </div>
+
+    <script>
+        // JavaScript for Popup
+        const items = document.querySelectorAll('.heading-container');
+        const popup = document.querySelector('.popup');
+        const overlay = document.querySelector('.overlay');
+        const popupTitle = document.getElementById('popup-title');
+        const popupDescription = document.getElementById('popup-description');
+        const popupImage = document.getElementById('popup-image');
+        const popupLink = document.getElementById('popup-link');
+        const closePopup = document.getElementById('close-popup');
+
+        // Show popup
+        items.forEach(item => {
+            item.addEventListener('click', () => {
+                const title = item.getAttribute('data-title');
+                const description = item.getAttribute('data-description');
+                const link = item.getAttribute('data-link');
+                const image = item.getAttribute('data-image');
+
+                popupTitle.textContent = title;
+                popupDescription.textContent = description;
+                popupImage.src = image;
+                popupLink.href = link;
+
+                popup.classList.add('show');
+                overlay.classList.add('show');
+            });
+        });
+
+        // Close popup
+        closePopup.addEventListener('click', () => {
+            popup.classList.remove('show');
+            overlay.classList.remove('show');
+        });
+
+        overlay.addEventListener('click', () => {
+            popup.classList.remove('show');
+            overlay.classList.remove('show');
+        });
+    </script>
+</body>
+
+</html>
